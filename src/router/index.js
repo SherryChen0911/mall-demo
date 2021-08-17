@@ -1,11 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Index from '../views/index/Index.vue'
+import Category from '../views/category/Category.vue'
+import Shopcart from '../views/shopcart/Shopcart.vue'
+import Profile from '../views/profile/Profile.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Index',
     component: Index
+  },
+  {
+    path: '/category',
+    name: 'Category',
+    component: Category
+  },
+  {
+    path: '/shopcart',
+    name: 'Shopcart',
+    component: Shopcart
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   },
   {
     path: '/about',

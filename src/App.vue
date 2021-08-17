@@ -1,11 +1,24 @@
 <template>
   <router-view/>
-  <div id="nav">
+  <!-- <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
-  </div>
- 
+  </div> -->
+
+  <van-tabbar active-color="#42b983" route>
+  <van-tabbar-item replace to="/">首页</van-tabbar-item>
+  <van-tabbar-item replace to="/category">分类</van-tabbar-item>
+  <van-tabbar-item replace to="/shopcart">购物车</van-tabbar-item>
+  <van-tabbar-item replace to="/profile">我的</van-tabbar-item>
+  </van-tabbar>
 </template>
+
+<script>
+
+
+
+</script>
+
 
 <style lang="scss">
 #app {
@@ -15,17 +28,19 @@
   text-align: center;
   color: #2c3e50;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.van-icon {
+     color: auto !important; 
 }
+// #nav {
+//   padding: 30px;
+
+//   a {
+//     font-weight: bold;
+//     color: #2c3e50;
+
+//     &.router-link-exact-active {
+//       color: #42b983;
+//     }
+//   }
+// }
 </style>
