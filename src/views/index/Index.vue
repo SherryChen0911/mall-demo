@@ -10,7 +10,7 @@
     <div class="column2-row">
 
       <div class="column2-row-item">
-        <van-image :src="require('@/assets/logo.png')" alt=""/>
+        <van-image :src="require('@/assets/images/11.png')" alt=""/>
         <div class="column2-row-item-name">《产品经理手册》</div>
         <div class="column2-row-item-tip">
           <span class="column2-row-item-tip-item">价格</span>
@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="column2-row-item">
-        <van-image :src="require('@/assets/logo.png')" alt=""/>
+        <van-image :src="require('@/assets/images/22.png')" alt=""/>
         <div>《产品经理手册》</div>
         <div>
           <span>价格</span>
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="column2-row-item">
-        <van-image :src="require('@/assets/logo.png')" alt=""/>
+        <van-image :src="require('@/assets/images/33.png')" alt=""/>
         <div>《产品经理手册》</div>
         <div>
           <span>价格</span>

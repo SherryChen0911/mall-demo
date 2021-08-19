@@ -12,6 +12,8 @@ import { Tab, Tabs } from 'vant';
 import { Col, Row } from 'vant';
 import { Collapse, CollapseItem } from 'vant';
 import { Sidebar, SidebarItem } from 'vant';
+import { Checkbox, CheckboxGroup } from 'vant';
+import { Cell, CellGroup } from 'vant';
 
 createApp(App).use(store).use(router)
 .use(NavBar)
@@ -28,4 +30,8 @@ createApp(App).use(store).use(router)
 .use(CollapseItem)
 .use(Sidebar)
 .use(SidebarItem)
+.use(Checkbox)
+.use(CheckboxGroup)
+.use(Cell)
+.use(CellGroup)
 .mount('#app')
