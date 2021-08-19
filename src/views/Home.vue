@@ -8,7 +8,7 @@
 
 <script>
 // @ is an alias to /src
-import "../assets/global.css";
+import "../assets/global.scss";
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {

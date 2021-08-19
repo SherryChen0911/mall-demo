@@ -1,0 +1,40 @@
+.nav-bar {
+    background-color: #42b983 !important;
+}
+.van-nav-bar__left{
+    .van-icon{
+    
+        color: #fff !important;
+    }
+}
+.van-nav-bar__title{
+    color: #fff !important;
+}
+.van-nav-bar__text{
+    color: #fff !important;
+}
+.van-tabs__line{
+    background-color: #42b983 !important;;
+
+}
+.van-collapse-item__content{
+    padding: 0 16px !important; 
+}
+.van-sidebar-item {
+    background-color: #fff !important;
+}
+.van-sidebar-item--select::before{
+    background-color: #42b983 !important;
+}
+.side-bar{
+    background-color: #42b983;
+}
+.side-cnt{
+    background-color: antiquewhite;  
+}
+.van-cell .van-cell--clickable .van-collapse-item__title{
+    .van-icon{
+        color: darkgray !important;
+      }
+}
+

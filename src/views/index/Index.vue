@@ -50,7 +50,7 @@
 
 <script>
 // @ is an alias to /src
-import "@/assets/global.css";
+import "@/assets/global.scss";
 
 export default {
   name: 'Index',
