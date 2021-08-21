@@ -32,3 +32,30 @@
       }
 }
 
+
+
+.column2-row{
+    width: calc(100% - 20px);
+    // background-color: red;
+    padding: 0 10px 10px 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .column2-row-item{
+    // background-color: aqua;
+    width: calc(50% - 40px);
+    padding: 20px;
+  }
+  .column2-row-item-name{
+    display: block;
+    margin: 0 auto;
+  }
+  .column2-row-item-tip{
+    display: block;
+    margin: 0 auto;
+  }
+  .column2-row-item-tip-item{
+    padding: 2px;
+  }
+

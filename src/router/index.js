@@ -3,27 +3,48 @@ import Index from '../views/index/Index.vue'
 import Category from '../views/category/Category.vue'
 import Shopcart from '../views/shopcart/Shopcart.vue'
 import Profile from '../views/profile/Profile.vue'
+import Detail from '../views/detail/Detail.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Index',
-    component: Index
+    component: Index,
+    meta:{
+      showTab: true,
+    }
   },
   {
     path: '/category',
     name: 'Category',
-    component: Category
+    component: Category,
+    meta:{
+      showTab: true,
+    }
   },
   {
     path: '/shopcart',
     name: 'Shopcart',
-    component: Shopcart
+    component: Shopcart,
+    meta:{
+      showTab: true,
+    }
+  },
+  {
+    path: '/detail',
+    name: 'Detail',
+    component: Detail,
+    meta:{
+      showTab: false,
+    }
   },
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: Profile,
+    meta:{
+      showTab: true,
+    }
   },
   {
     path: '/about',

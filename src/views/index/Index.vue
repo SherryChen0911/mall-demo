@@ -8,8 +8,7 @@
   <van-tabs v-model="tabSelect">
   <van-tab title="畅销">
     <div class="column2-row">
-
-      <div class="column2-row-item">
+      <div class="column2-row-item" @click="toDetail">
         <van-image :src="require('@/assets/images/11.png')" alt=""/>
         <div class="column2-row-item-name">《产品经理手册》</div>
         <div class="column2-row-item-tip">
@@ -36,7 +35,6 @@
           <span>收藏数</span>
         </div>
       </div>
-
     </div>
   </van-tab>
   <van-tab title="新书">
@@ -63,9 +61,13 @@ export default {
   },
   methods:{
     onClickLeft(){
-
+      this.$router.go(-1)
     },
     onClickRight(){
+
+    },
+    toDetail(){
+      this.$router.push({path:"/detail"})
 
     }
   }
@@ -76,29 +78,5 @@ export default {
   .my-swipe{
     // height: 150px;
     background-color: aqua;
-  }
-  .column2-row{
-    width: calc(100% - 20px);
-    // background-color: red;
-    padding: 0 10px 10px 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .column2-row-item{
-    // background-color: aqua;
-    width: calc(50% - 40px);
-    padding: 20px;
-  }
-  .column2-row-item-name{
-    display: block;
-    margin: 0 auto;
-  }
-  .column2-row-item-tip{
-    display: block;
-    margin: 0 auto;
-  }
-  .column2-row-item-tip-item{
-    padding: 2px;
   }
 </style>
