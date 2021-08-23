@@ -148,7 +148,7 @@
     </div>
     <div class="detail-btn">
         <van-button class="btn" color="linear-gradient(to right, #ffba6a, #FF976A)">加入购物车</van-button>
-        <van-button class="btn" color="linear-gradient(to right, #ff6034, #EE0A24)">立即购买</van-button>
+        <van-button class="btn" color="linear-gradient(to right, #ff6034, #EE0A24)" @click="toPreorder">立即购买</van-button>
     </div>
   </div>
 
@@ -170,7 +170,7 @@ export default {
   methods:{
     onClickLeft(){
       this.$router.go(-1)
-      this.$router.removeRoute("/index")
+      // this.$router.removeRoute("/index")
 
     },
     onClickRight(){
@@ -178,6 +178,9 @@ export default {
     },
     toShopcart(){
       this.$router.replace({path:"/shopcart"});
+    },
+    toPreorder(){
+      this.$router.push({path:"/preorder"});
     }
   }
 }

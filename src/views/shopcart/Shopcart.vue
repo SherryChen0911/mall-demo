@@ -74,44 +74,4 @@ export default {
 </script>
 
 <style lang="scss">
-.check-list-item{
-  width: calc(100% - 20px);
-  padding: 10px;
-  display: flex;
-}
-.check-list-cnt{
-  flex: 1;
-  padding: 5px 0;
-  display: flex;
-  flex-direction: column; 
-  text-align: left;
-}
-.check-list-cnt-title{
-  flex: 1;
-}
-.check-list-cnt-other{
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between !important;
-}
-.settlement-bar{
-  width: calc(100% - 20px);
-  padding: 10px;
-  position: fixed;
-  left: 0;
-  bottom: 50px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 14px;
-  .van-checkbox__label{
-    font-size: 14px;
-  }
-}
-.settlement-bar-cnt{
-  flex:1;
-  margin-right: 20px;
-  text-align: right;
-}
-
 </style>

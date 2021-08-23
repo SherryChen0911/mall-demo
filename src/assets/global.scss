@@ -1,61 +1,130 @@
 .nav-bar {
     background-color: #42b983 !important;
 }
-.van-nav-bar__left{
-    .van-icon{
-    
+
+.van-nav-bar__left {
+    .van-icon {
+
         color: #fff !important;
     }
 }
-.van-nav-bar__title{
+
+.van-nav-bar__title {
     color: #fff !important;
 }
-.van-nav-bar__text{
+
+.van-nav-bar__text {
     color: #fff !important;
 }
-.van-tabs__line{
-    background-color: #42b983 !important;;
+
+.van-tabs__line {
+    background-color: #42b983 !important;
+    ;
 
 }
-.van-collapse-item__content{
-    padding: 0 16px !important; 
+
+.van-collapse-item__content {
+    padding: 0 16px !important;
 }
+
 .van-sidebar-item {
     background-color: #fff !important;
 }
-.van-sidebar-item--select::before{
+
+.van-sidebar-item--select::before {
     background-color: #42b983 !important;
 }
-.van-cell .van-cell--clickable .van-collapse-item__title{
-    .van-icon{
+
+.van-cell .van-cell--clickable .van-collapse-item__title {
+    .van-icon {
         color: darkgray !important;
-      }
+    }
 }
 
 
 
-.column2-row{
+.column2-row {
     width: calc(100% - 20px);
     // background-color: red;
     padding: 0 10px 10px 10px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-  }
-  .column2-row-item{
+}
+
+.column2-row-item {
     // background-color: aqua;
     width: calc(50% - 40px);
     padding: 20px;
-  }
-  .column2-row-item-name{
+}
+
+.column2-row-item-name {
     display: block;
     margin: 0 auto;
-  }
-  .column2-row-item-tip{
+}
+
+.column2-row-item-tip {
     display: block;
     margin: 0 auto;
-  }
-  .column2-row-item-tip-item{
+}
+
+.column2-row-item-tip-item {
     padding: 2px;
+}
+
+.check-list-item {
+    width: calc(100% - 20px);
+    padding: 10px;
+    display: flex;
+}
+
+.check-list-cnt {
+    flex: 1;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.check-list-cnt-title {
+    flex: 1;
+}
+
+.check-list-cnt-other {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between !important;
+}
+
+.settlement-bar{
+    width: calc(100% - 20px);
+    padding: 10px;
+    position: fixed;
+    left: 0;
+    bottom: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 14px;
+    .van-checkbox__label{
+      font-size: 14px;
+    }
   }
 
+.settlement-bar-cnt{
+    flex:1;
+    margin-right: 20px;
+    text-align: right;
+  }
+
+.settlement-bar-order{
+    width: calc(100% - 20px);
+    padding: 10px;
+    position: fixed;
+    left: 0;
+    bottom: 0px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 14px;
+  }

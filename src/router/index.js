@@ -4,6 +4,7 @@ import Category from '../views/category/Category.vue'
 import Shopcart from '../views/shopcart/Shopcart.vue'
 import Profile from '../views/profile/Profile.vue'
 import Detail from '../views/detail/Detail.vue'
+import Preorder from '../views/order/Preorder.vue'
 
 const routes = [
   {
@@ -44,6 +45,14 @@ const routes = [
     component: Profile,
     meta:{
       showTab: true,
+    }
+  },
+  {
+    path: '/preorder',
+    name: 'Preorder',
+    component: Preorder,
+    meta:{
+      showTab: false,
     }
   },
   {
