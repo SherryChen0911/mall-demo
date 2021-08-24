@@ -4,6 +4,17 @@
     <van-image fit="contain" :src="require('@/assets/logo.png')" style="width:80px"/>
     <div class="profile-cnt">奔跑的小琳琳</div>
   </div>
+  <div class="order-area">
+    <van-grid border="false" style="width:100%;">
+      <van-grid-item icon="photo-o" text="文字" />
+      <van-grid-item icon="photo-o" text="文字" />
+      <van-grid-item icon="photo-o" text="文字" />
+      <van-grid-item icon="photo-o" text="文字" />
+    </van-grid>
+  </div>
+  <div class="other-area">
+
+  </div>
 </template>
 
 <script>
@@ -26,18 +37,44 @@ export default {
 </script>
 
 <style lang="scss">
+
 .profile-card{
-  // width: calc(100% - 40px);
-  margin: 10px;
+  height: 150px;
   padding: 10px 20px;
   background-image: linear-gradient(to right, #1be4a1, #34e4e4c4);
-  border-radius: 10px;
   display: flex;
+  align-items: flex-start;
 }
 .profile-cnt{
   flex: 1;
   margin: 10px 20px;
   text-align: left;
   color: #ffffff;
+}
+.order-area{
+  position: absolute;
+  top: 150px;
+  left: 10px;
+  right: 10px;
+  height: 80px;
+  background-color: #ffff;
+  box-shadow: 1px 1px 3px grey;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.other-area{
+  position: absolute;
+  top: 260px;
+  left: 10px;
+  right: 10px;
+  height: 500px;
+  background-color: #ffff;
+  box-shadow: 1px 1px 3px grey;
+  border-radius: 20px;
+  
+
 }
 </style>

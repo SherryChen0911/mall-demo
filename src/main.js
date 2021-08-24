@@ -16,7 +16,9 @@ import { Checkbox, CheckboxGroup } from 'vant';
 import { Cell, CellGroup } from 'vant';
 import { Stepper } from 'vant';
 import { Button } from 'vant';
-import { Icon } from 'vant'
+import { Icon } from 'vant';
+import { Divider } from 'vant';
+import { Grid, GridItem } from 'vant';
 
 createApp(App).use(store).use(router)
 .use(NavBar)
@@ -40,4 +42,7 @@ createApp(App).use(store).use(router)
 .use(Stepper)
 .use(Button)
 .use(Icon)
+.use(Divider)
+.use(Grid)
+.use(GridItem)
 .mount('#app')

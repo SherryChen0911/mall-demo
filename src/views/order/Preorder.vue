@@ -1,9 +1,15 @@
 <template>
   <van-nav-bar class="nav-bar" title="生成订单" left-text="返回" right-text="按钮" left-arrow  @click-left="onClickLeft" @click-right="onClickRight"/>
-  <div>
-    <div><span>奔跑的小琳琳</span><span>15900001234</span></div>
-    <div></div>
+  <div class="address">
+    <div class="address-area">
+      <div style="font-size:18px; margin-bottom:10px;">收货地址</div>
+      <div><span style="font-size:16px">奔跑的小琳琳</span><span style="font-size:14px; color:gray; margin-left:10px">15900001234</span></div>
+      <div>福建省福州市鼓楼区香山公寓1号303</div>
+    </div>
+    <van-icon name="arrow" size="20px"/>
   </div>
+
+  <div style="width:100%; border:1px dashed ;border-color: #42b983"></div>
   <div style="width = 100% !important;">
     <div class="check-list-item" v-for="(item) in list" clickable :key="item.name">
       <van-image fit="contain" :src="item.src" style="width:80px;"/>
@@ -54,5 +60,19 @@ export default {
   .my-swipe{
     // height: 150px;
     background-color: aqua;
+  }
+  .address{
+    margin: 10px;
+    display: flex;
+    align-items: center;
+
+  }
+  .address-area{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
   }
 </style>
