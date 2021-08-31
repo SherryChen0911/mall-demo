@@ -42,7 +42,10 @@
 }
 
 
-
+.cnt{
+    height: 100%;
+    background-color: #faf6f6;
+    }
 .column2-row {
     width: calc(100% - 20px);
     // background-color: red;
@@ -128,3 +131,4 @@
     align-items: center;
     font-size: 14px;
   }
+

@@ -21,7 +21,13 @@
 
 
 <style lang="scss">
+html,body,#app{
+height: 100%;
+}
 #app {
+  flex: 1;
+  width: 100%;
+  background-color: #fff;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

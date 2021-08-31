@@ -1,0 +1,30 @@
+@font-face {
+  font-family: "iconfont"; /* Project id  */
+  src: url('iconfont.ttf?t=1630381115033') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 30px;
+  color: #1be4a1;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-yiwancheng:before {
+  content: "\e6a6";
+}
+
+.icon-daifahuo:before {
+  content: "\e60a";
+}
+
+.icon-dingdan:before {
+  content: "\e604";
+}
+
+.icon-daizhifupayment:before {
+  content: "\e7bc";
+}
+

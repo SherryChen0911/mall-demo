@@ -1,25 +1,39 @@
 <template>
-  <van-nav-bar class="nav-bar" title="我的" left-text="返回" right-text="按钮" left-arrow  @click-left="onClickLeft" @click-right="onClickRight"/>
-  <div class="profile-card">
-    <van-image fit="contain" :src="require('@/assets/logo.png')" style="width:80px"/>
-    <div class="profile-cnt">奔跑的小琳琳</div>
-  </div>
-  <div class="order-area">
-    <van-grid border="false" style="width:100%;">
-      <van-grid-item icon="photo-o" text="文字" />
-      <van-grid-item icon="photo-o" text="文字" />
-      <van-grid-item icon="photo-o" text="文字" />
-      <van-grid-item icon="photo-o" text="文字" />
-    </van-grid>
-  </div>
-  <div class="other-area">
+  <div class="cnt">
+    <van-nav-bar class="nav-bar" title="我的" left-text="返回" right-text="按钮" left-arrow  @click-left="onClickLeft" @click-right="onClickRight"/>
+    <div class="profile-card">
+      <van-image fit="contain" :src="require('@/assets/logo.png')" style="width:80px"/>
+      <div class="profile-cnt">奔跑的小琳琳</div>
+    </div>
+    <div class="order-area">
+      <div class="order-grid-item">
+        <span class="iconfont">&#xe604;</span>
+        <div style="color:#1be4a1; margin-top:5px;">全部</div>
+      </div>
+      <div class="order-grid-item">
+        <span class="iconfont">&#xe7bc;</span>
+        <div style="color:#1be4a1; margin-top:5px;">待支付</div>
+      </div>
+      <div class="order-grid-item">
+        <span class="iconfont">&#xe60a;</span>
+        <div style="color:#1be4a1; margin-top:5px;">待发货</div>
+      </div>
+      <div class="order-grid-item">
+        <span class="iconfont">&#xe6a6;</span>
+        <div style="color:#1be4a1; margin-top:5px;">已完成</div>
+      </div>
+    </div>
+    <div class="other-area">
 
+    </div>
   </div>
+
 </template>
 
 <script>
 // @ is an alias to /src
 import "@/assets/global.scss";
+import "@/assets/iconfont.css";
 
 export default {
   name: 'Profile',
@@ -37,7 +51,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .profile-card{
   height: 150px;
   padding: 10px 20px;
@@ -57,13 +70,22 @@ export default {
   left: 10px;
   right: 10px;
   height: 80px;
-  background-color: #ffff;
+  padding: 10px;
+  background-color: #ffffff;
   box-shadow: 1px 1px 3px grey;
   border-radius: 20px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order-grid-item{
+  flex: 1;
+  height: 100%;
+  // background-color: red;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
 }
 .other-area{
   position: absolute;
@@ -74,7 +96,6 @@ export default {
   background-color: #ffff;
   box-shadow: 1px 1px 3px grey;
   border-radius: 20px;
-  
-
 }
+
 </style>
