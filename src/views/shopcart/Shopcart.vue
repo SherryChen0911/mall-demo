@@ -1,22 +1,27 @@
 <template>
-  <van-nav-bar class="nav-bar" title="购物车" left-text="返回" right-text="按钮" left-arrow  @click-left="onClickLeft" @click-right="onClickRight"/>
-  <van-checkbox-group v-model="selectResult" style="width = 100% !important;" @click="singleSelect">
-      <div class="check-list-item" v-for="(item) in list" clickable :key="item.name">
-        <van-checkbox :name="item.id"/>
-        <van-image fit="contain" :src="item.src" style="width:80px;"/>
-        <div class="check-list-cnt">
-          <div class="check-list-cnt-title">{{item.name}}</div>
-          <div class="check-list-cnt-other">
-            <div><span>￥</span><span>{{item.price}}</span></div>
-            <van-stepper v-model="item.count" />
+  <div>
+    <van-nav-bar class="nav-bar" title="购物车" left-text="返回" right-text="按钮" left-arrow fixed @click-left="onClickLeft" @click-right="onClickRight"/>
+    <div class="navbar-palceholder"></div>
+    <van-checkbox-group v-model="selectResult" style="width = 100% !important;" @click="singleSelect">
+        <div class="check-list-item" v-for="(item) in list" clickable :key="item.name">
+          <van-checkbox :name="item.id"/>
+          <van-image fit="contain" :src="item.src" style="width:80px;"/>
+          <div class="check-list-cnt">
+            <div class="check-list-cnt-title">{{item.name}}</div>
+            <div class="check-list-cnt-other">
+              <div><span>￥</span><span>{{item.price}}</span></div>
+              <van-stepper v-model="item.count" />
+            </div>
           </div>
         </div>
-      </div>
-  </van-checkbox-group>
-  <div class="settlement-bar">
-    <van-checkbox v-model="selectall" @click="selectAll">全选</van-checkbox>
-    <div class="settlement-bar-cnt"><span>合计:</span><span style="color:red">￥</span><span style="color:red;font-size:18px;font-weight:bold;">{{total}}</span></div>
-    <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" style="width:80px; height:30px; border-radius:15px;" @click="settlement">结算</van-button>
+    </van-checkbox-group>
+    <div style="height:500px; background-color:red;margin-bottom:10px">123</div>
+    <div style="height:50px"></div>
+    <div class="settlement-bar">
+      <van-checkbox v-model="selectall" @click="selectAll">全选</van-checkbox>
+      <div class="settlement-bar-cnt"><span>合计:</span><span style="color:red">￥</span><span style="color:red;font-size:18px;font-weight:bold;">{{total}}</span></div>
+      <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" style="width:80px; height:30px; border-radius:15px;" @click="settlement">结算</van-button>
+    </div>
   </div>
 </template>
 

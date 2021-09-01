@@ -5,7 +5,7 @@
     <router-link to="/about">About</router-link>
   </div> -->
 
-  <van-tabbar v-if="this.$route.meta.showTab" active-color="#42b983" route>
+  <van-tabbar v-if="this.$route.meta.showTab" placeholder="true" active-color="#42b983" route>
   <van-tabbar-item icon="wap-home-o" replace to="/">首页</van-tabbar-item>
   <van-tabbar-item icon="apps-o" replace to="/category">分类</van-tabbar-item>
   <van-tabbar-item icon="shopping-cart-o" replace to="/shopcart">购物车</van-tabbar-item>

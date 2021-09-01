@@ -10,7 +10,6 @@
         <span style="text-decoration: line-through; font-size: 12px;">￥10.00</span>
         <span style="flex: 1; text-align: right; font-size: 12px;">销量:10</span>
       </div>
-      
     </div>
     <div style="width:100%;height:10px;background-color:#faf6f6;"></div>
     <van-tabs v-model="active" sticky offset-top="46px">
@@ -151,7 +150,6 @@
         <van-button class="btn" color="linear-gradient(to right, #ff6034, #EE0A24)" @click="toPreorder">立即购买</van-button>
     </div>
   </div>
-
 </template>
 
 <script>
