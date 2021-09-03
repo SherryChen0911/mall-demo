@@ -44,6 +44,7 @@
 
 .cnt{
     background-color: #faf6f6;
+    padding-bottom: 10px;
 }
 
 .navbar-palceholder{
@@ -142,3 +143,9 @@
     font-size: 14px;
   }
 
+.btn{
+    width: 100px;
+    height: 35px !important;
+    border-radius: 10px !important;
+    margin-right: 10px !important;
+}

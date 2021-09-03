@@ -242,12 +242,7 @@ export default {
     align-items: center;
 
   }
-  .btn{
-      width: 100px;
-      height: 35px !important;
-      border-radius: 10px !important;
-      margin-right: 10px !important;
-  }
+
   .van-tabs__content{
     background-color: #fff;
   }

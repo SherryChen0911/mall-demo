@@ -1,6 +1,6 @@
 <template>
-<div>
-  <van-nav-bar class="nav-bar" title="生成订单" left-text="返回" right-text="按钮" left-arrow fixed @click-left="onClickLeft" @click-right="onClickRight"/>
+  <div>
+    <van-nav-bar class="nav-bar" title="生成订单" left-text="返回" right-text="按钮" left-arrow fixed @click-left="onClickLeft" @click-right="onClickRight"/>
     <div class="navbar-palceholder"></div>
     <div class="address">
       <div class="address-area">
@@ -26,10 +26,9 @@
     <div class="tabbar-placeholder"></div>
     <div class="settlement-bar-order">
       <div class="settlement-bar-cnt"><span>合计:</span><span style="color:red">￥</span><span style="color:red;font-size:18px;font-weight:bold;">100.00</span></div>
-      <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" style="width:80px; height:30px; border-radius:15px;">结算</van-button>
+      <van-button class="btn" color="linear-gradient(to right, #ff6034, #ee0a24)">结算</van-button>
     </div>
-</div>
-  
+  </div>
 </template> 
 
 <script>

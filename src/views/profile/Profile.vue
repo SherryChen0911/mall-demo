@@ -7,19 +7,19 @@
       <div class="profile-cnt">奔跑的小琳琳</div>
     </div>
     <div class="order-area">
-      <div class="order-grid-item">
+      <div class="order-grid-item" @click="toOrderList">
         <span class="iconfont">&#xe604;</span>
         <div style="color:#1be4a1; margin-top:5px;">全部</div>
       </div>
-      <div class="order-grid-item">
+      <div class="order-grid-item" @click="toOrderList">
         <span class="iconfont">&#xe7bc;</span>
         <div style="color:#1be4a1; margin-top:5px;">待支付</div>
       </div>
-      <div class="order-grid-item">
+      <div class="order-grid-item" @click="toOrderList">
         <span class="iconfont">&#xe60a;</span>
         <div style="color:#1be4a1; margin-top:5px;">待发货</div>
       </div>
-      <div class="order-grid-item">
+      <div class="order-grid-item" @click="toOrderList">
         <span class="iconfont">&#xe6a6;</span>
         <div style="color:#1be4a1; margin-top:5px;">已完成</div>
       </div>
@@ -45,6 +45,9 @@ export default {
     },
     onClickRight(){
 
+    },
+    toOrderList(){
+      this.$router.push({path:"/orderlist"});
     }
   }
 }
@@ -88,7 +91,7 @@ export default {
   align-items: center;
 }
 .other-area{
-  margin: 46px 10px 10px 10px;
+  margin: 46px 10px 0 10px;
   width: calc(100% - 20px);
   height:500px;
   background-color: #ffff;

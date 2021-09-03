@@ -5,6 +5,10 @@ import Shopcart from '../views/shopcart/Shopcart.vue'
 import Profile from '../views/profile/Profile.vue'
 import Detail from '../views/detail/Detail.vue'
 import Preorder from '../views/order/Preorder.vue'
+import OrderList from '../views/order/OrderList.vue'
+import OrderDetail from '../views/order/OrderDetail.vue'
+import AddressList from '../views/address/AddressList.vue'
+import AddressDetail from '../views/address/AddressDetail.vue'
 
 const routes = [
   {
@@ -51,6 +55,38 @@ const routes = [
     path: '/preorder',
     name: 'Preorder',
     component: Preorder,
+    meta:{
+      showTab: false,
+    }
+  },
+  {
+    path: '/orderlist',
+    name: 'OrderList',
+    component: OrderList,
+    meta:{
+      showTab: false,
+    }
+  },
+  {
+    path: '/orderdetail',
+    name: 'OrderDetail',
+    component: OrderDetail,
+    meta:{
+      showTab: false,
+    }
+  },
+  {
+    path: '/addresslist',
+    name: 'AddressList',
+    component: AddressList,
+    meta:{
+      showTab: false,
+    }
+  },
+  {
+    path: '/addressdetail',
+    name: 'AddressDetail',
+    component: AddressDetail,
     meta:{
       showTab: false,
     }
