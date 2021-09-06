@@ -25,6 +25,11 @@
       </div>
     </div>
     <div class="other-area">
+      <van-cell-group style="padding-top: 20px; border-radius: 20px 20px 0 0; text-align: left;">
+        <van-cell title="收货地址" :icon="require('@/assets/logo.png')" is-link to="/addresslist"/>
+        <van-cell title="收货地址" is-link to="/addressdetail"/>
+        <van-cell title="收货地址" is-link/>
+      </van-cell-group>
       <!-- <div style="width:100%; height:500px; background-color:red;margin-bottom:10px">123</div> -->
     </div>
   </div>
