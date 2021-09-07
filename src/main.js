@@ -20,6 +20,7 @@ import { Icon } from 'vant';
 import { Divider } from 'vant';
 import { Grid, GridItem } from 'vant';
 import { Switch } from 'vant';
+import { Field } from 'vant';
 
 createApp(App).use(store).use(router)
 .use(NavBar)
@@ -47,4 +48,5 @@ createApp(App).use(store).use(router)
 .use(Grid)
 .use(GridItem)
 .use(Switch)
+.use(Field)
 .mount('#app')

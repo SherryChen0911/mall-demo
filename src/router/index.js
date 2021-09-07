@@ -9,6 +9,7 @@ import OrderList from '../views/order/OrderList.vue'
 import OrderDetail from '../views/order/OrderDetail.vue'
 import AddressList from '../views/address/AddressList.vue'
 import AddressDetail from '../views/address/AddressDetail.vue'
+import Login from '../views/login/Login.vue'
 
 const routes = [
   {
@@ -87,6 +88,14 @@ const routes = [
     path: '/addressdetail',
     name: 'AddressDetail',
     component: AddressDetail,
+    meta:{
+      showTab: false,
+    }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
     meta:{
       showTab: false,
     }

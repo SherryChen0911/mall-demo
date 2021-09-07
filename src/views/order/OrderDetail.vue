@@ -35,7 +35,10 @@
         <div><span style="color:red;">￥</span><span style="color:red; font-size:18px">100</span></div>
       </div>
     </div>
-    <van-button class="btn" color="linear-gradient(to right, #ff6034, #EE0A24)" @click="toPreorder">立即购买</van-button>  
+    <div class="order-list-item-price"><span style="margin-right:10px;">总价:</span><span>￥</span><span>588.00</span></div>
+    <div class="ordr-detail-btn-area">
+      <van-button class="one-btn" color="linear-gradient(to right, #ff6034, #EE0A24)">立即支付</van-button>  
+    </div>
   </div>
 
 </div>
@@ -67,6 +70,7 @@ export default {
 <style lang="scss">
     .order-detail-item{
       margin: 10px 10px 10px 10px;
+      padding: 10px 10px 10px 0;
       display: flex;
       flex-direction: column;
       text-align: left;
@@ -91,5 +95,19 @@ export default {
     .item-padding{
       padding: 10px;
       font-size: 14px;
+    }
+    .order-list-item-price{
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin: 10px;
+
+    }
+    .ordr-detail-btn-area{
+      margin-left: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-top: 1px solid lightgray;
     }
 </style>

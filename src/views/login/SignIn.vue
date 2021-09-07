@@ -63,8 +63,7 @@ export default {
     width: 100%;
   }
   .form-item{
-    margin: 10px;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     justify-content: flex-start;
   }
