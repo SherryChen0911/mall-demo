@@ -3,9 +3,9 @@
     <van-nav-bar class="nav-bar" title="图书兄弟" left-text="返回" right-text="按钮" left-arrow fixed @click-left="onClickLeft" @click-right="onClickRight"/>
     <div class="navbar-palceholder"></div>
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item><van-image fit="contain" :src="require('@/assets/images/1.png')"/></van-swipe-item>
-      <van-swipe-item><van-image fit="contain" :src="require('@/assets/images/2.png')"></van-image></van-swipe-item>
-      <van-swipe-item><van-image fit="contain" :src="require('@/assets/images/3.png')"/></van-swipe-item>
+      <van-swipe-item class="my-swipe-item" v-for="item in slides" :key="item.id">
+        <van-image class="my-img" fit="contain" :src="item.img_url"/>
+      </van-swipe-item>
     </van-swipe>
     <van-tabs v-model="tabSelect">
       <van-tab title="畅销">
@@ -53,6 +53,8 @@
 <script>
 // @ is an alias to /src
 import "@/assets/global.scss";
+import "@/assets/iconfont.css"
+import { getHomeAllData } from "@/network/indexPage.js"
 
 export default {
   name: 'Index',
@@ -61,7 +63,26 @@ export default {
   data(){
     return {
       tabSelect: 0,
+      slides:[],
+      goods:[],
     }
+  },
+  mounted(){
+    console.log("enter mounted")
+    getHomeAllData()
+    .then(
+      (res)=>{
+        this.slides = res.data.slides;
+        this.goods = res.data.goods;
+        console.log("slides",this.slides)
+        console.log("goods",this.goods)
+      }
+    )
+    .catch(
+      (err)=>{
+        console.log(err)
+      }
+    )
   },
   methods:{
     onClickLeft(){
@@ -80,7 +101,16 @@ export default {
 
 <style lang="scss">
   .my-swipe{
-    // height: 150px;
-    background-color: aqua;
+    width: 100%;
+    height: 160px;
+  }
+  .my-swipe-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .my-img{
+    width: 100%;
+    height: 160px;
   }
 </style>
