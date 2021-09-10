@@ -7,6 +7,7 @@
         <van-image class="my-img" fit="contain" :src="item.img_url"/>
       </van-swipe-item>
     </van-swipe>
+    <recommend-view :recommends="goods"></recommend-view>
     <van-tabs v-model="tabSelect">
       <van-tab title="畅销">
         <div class="column2-row">
@@ -54,6 +55,7 @@
 // @ is an alias to /src
 import "@/assets/global.scss";
 import "@/assets/iconfont.css"
+import RecommendView from "@/components/RecommendView.vue"
 import { getHomeAllData } from "@/network/indexPage.js"
 
 export default {
@@ -67,13 +69,16 @@ export default {
       goods:[],
     }
   },
-  mounted(){
-    console.log("enter mounted")
+  components:{
+    RecommendView
+  },
+  created(){
+    console.log("enter created")
     getHomeAllData()
     .then(
       (res)=>{
         this.slides = res.data.slides;
-        this.goods = res.data.goods;
+        this.goods = res.data.goods.data;
         console.log("slides",this.slides)
         console.log("goods",this.goods)
       }
