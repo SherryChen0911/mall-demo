@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="mouse-wheel-wrapper" ref="scroll">
       <div class="mouse-wheel-content">
         <div class="mouse-wheel-item" v-for="n in recommends" :key="n.id">
@@ -14,7 +13,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -38,7 +36,7 @@ export default {
     return {};
   },
   mounted() {
-    console.log("enter mounted");
+    console.log("enter RecommendView mounted");
     this.bs = new BScroll(this.$refs.scroll, {
       scrollX: true,
       scrollY: false,
@@ -67,9 +65,11 @@ export default {
 <style lang="scss" scoped>
 .mouse-wheel-wrapper {
   width: 100%;
-  margin: 20px 0;
+  padding: 20px 0;
   height: 100px;
   overflow: hidden;
+  border-bottom: solid 8px #faf6f6;
+  // background-color: lightpink;
 }
 .mouse-wheel-content {
   display: inline-block;

@@ -8,7 +8,18 @@
       </van-swipe-item>
     </van-swipe>
     <recommend-view :recommends="goods"></recommend-view>
-    <van-tabs v-model="tabSelect">
+    <tab-control class="tab-card" :titles="['畅销', '新书', '精选']" @tabClick="indexTabClick"></tab-control>
+    <div v-if="tabSelect == 0" class="tab-view">
+      000
+
+    </div>
+    <div v-if="tabSelect == 1" class="tab-view column2-row">
+      111
+    </div>
+    <div v-if="tabSelect == 2" class="tab-view column2-row">
+      222
+    </div>
+    <!-- <van-tabs v-model="tabSelect">
       <van-tab title="畅销">
         <div class="column2-row">
           <div class="column2-row-item" @click="toDetail">
@@ -46,7 +57,7 @@
       <van-tab title="精选">
         
       </van-tab>
-    </van-tabs>
+    </van-tabs> -->
     <!-- <div class="tabbar-placeholder"></div> -->
   </div>
 </template>
@@ -56,11 +67,14 @@
 import "@/assets/global.scss";
 import "@/assets/iconfont.css"
 import RecommendView from "@/components/RecommendView.vue"
+import TabControl from "@/components/TabControl.vue"
 import { getHomeAllData } from "@/network/indexPage.js"
 
 export default {
   name: 'Index',
   components: {
+    RecommendView,
+    TabControl,
   },
   data(){
     return {
@@ -69,11 +83,8 @@ export default {
       goods:[],
     }
   },
-  components:{
-    RecommendView
-  },
   created(){
-    console.log("enter created")
+    console.log("enter Index created")
     getHomeAllData()
     .then(
       (res)=>{
@@ -94,6 +105,11 @@ export default {
       this.$router.go(-1)
     },
     onClickRight(){
+
+    },
+    indexTabClick(emitData){
+      console.log("emitData",emitData);
+      this.tabSelect = emitData;
 
     },
     toDetail(){
@@ -117,5 +133,14 @@ export default {
   .my-img{
     width: 100%;
     height: 160px;
+  }
+  .tab-card{
+    position: sticky;
+    top: 45px;
+  }
+  .tab-view{
+    width: 100%;
+    height: 1000px;
+    background-color: lightpink;
   }
 </style>
