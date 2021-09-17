@@ -15,7 +15,7 @@
           </div>
         </div>
     </van-checkbox-group>
-    <div style="height:500px; background-color:red;margin-bottom:10px">123</div>
+    <!-- <div style="height:500px; background-color:red;margin-bottom:10px">123</div> -->
     <div style="height:50px"></div>
     <div class="settlement-bar">
       <van-checkbox v-model="selectall" @click="selectAll">全选</van-checkbox>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <van-nav-bar class="nav-bar" title="图书兄弟" left-text="返回" right-text="按钮" left-arrow fixed @click-left="onClickLeft" @click-right="onClickRight"/>
     <div class="navbar-palceholder"></div>
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
@@ -9,56 +9,23 @@
     </van-swipe>
     <recommend-view :recommends="goods"></recommend-view>
     <tab-control class="tab-card" :titles="['畅销', '新书', '精选']" @tabClick="indexTabClick"></tab-control>
-    <div v-if="tabSelect == 0" class="tab-view">
-      000
-
-    </div>
-    <div v-if="tabSelect == 1" class="tab-view column2-row">
-      111
-    </div>
-    <div v-if="tabSelect == 2" class="tab-view column2-row">
-      222
-    </div>
-    <!-- <van-tabs v-model="tabSelect">
-      <van-tab title="畅销">
-        <div class="column2-row">
-          <div class="column2-row-item" @click="toDetail">
-            <van-image :src="require('@/assets/images/11.png')" alt=""/>
-            <div class="column2-row-item-name">《产品经理手册》</div>
-            <div class="column2-row-item-tip">
-              <span class="column2-row-item-tip-item">价格</span>
-              <span class="column2-row-item-tip-item">星星</span>
-              <span class="column2-row-item-tip-item">收藏数</span>
-            </div>
-          </div>
-          <div class="column2-row-item">
-            <van-image :src="require('@/assets/images/22.png')" alt=""/>
-            <div>《产品经理手册》</div>
-            <div>
-              <span>价格</span>
-              <span>星星</span>
-              <span>收藏数</span>
-            </div>
-          </div>
-          <div class="column2-row-item">
-            <van-image :src="require('@/assets/images/33.png')" alt=""/>
-            <div>《产品经理手册》</div>
-            <div>
-              <span>价格</span>
-              <span>星星</span>
-              <span>收藏数</span>
-            </div>
-          </div>
+    <div class="wrapper" ref="wrapper" v-if="tabSelect == 0">
+      <div class="scroll-content">
+        <div  class="tab-view">
+          000
+          <goods-list-view :goodList="saleGoods"></goods-list-view>
         </div>
-      </van-tab>
-      <van-tab title="新书">
-        
-      </van-tab>
-      <van-tab title="精选">
-        
-      </van-tab>
-    </van-tabs> -->
-    <!-- <div class="tabbar-placeholder"></div> -->
+      </div>
+    </div>
+
+    <div v-if="tabSelect == 1" class="tab-view">
+      111
+      <goods-list-view :goodList="newGoods"></goods-list-view>
+    </div>
+    <div v-if="tabSelect == 2" class="tab-view">
+      222
+      <goods-list-view :goodList="collectGoods"></goods-list-view>
+    </div>
   </div>
 </template>
 
@@ -66,39 +33,81 @@
 // @ is an alias to /src
 import "@/assets/global.scss";
 import "@/assets/iconfont.css"
+import BScroll from "better-scroll";
 import RecommendView from "@/components/RecommendView.vue"
 import TabControl from "@/components/TabControl.vue"
-import { getHomeAllData } from "@/network/indexPage.js"
+import GoodsListView from "@/components/GoodsListView.vue"
+import { getHomeAllData, getHomeGoods } from "@/network/indexPage.js"
+import { watchEffect } from '@vue/runtime-core';
 
 export default {
   name: 'Index',
   components: {
     RecommendView,
+    GoodsListView,
     TabControl,
+    scroll:{},
   },
   data(){
     return {
       tabSelect: 0,
       slides:[],
       goods:[],
+      saleGoods:[],
+      newGoods:[],
+      collectGoods:[],
+      salePage:1,
+      newPage:1,
+      collectPage:1,
+      tabType:"sales",
     }
+  },
+  watch:{
+
   },
   created(){
     console.log("enter Index created")
+    // watchEffect(()=>{
+    //   this.$nextTick(()=>{
+    //     console.log("watchEffect");
+    //     this.scroll && this.scroll.refresh();
+    //   })
+    // })
+
+
     getHomeAllData()
     .then(
       (res)=>{
         this.slides = res.data.slides;
         this.goods = res.data.goods.data;
+        this.saleGoods = res.data.goods.data
         console.log("slides",this.slides)
         console.log("goods",this.goods)
+        this.$nextTick(() => {
+          this.scroll = new Bscroll(this.$refs.wrapper, {})
+        })
       }
     )
     .catch(
       (err)=>{
         console.log(err)
       }
-    )
+    );
+  },
+  mounted(){
+    // let wrapper = document.querySelector('.wrapper')
+    // this.scroll = new BScroll(wrapper,{
+    //   // probeType:true,
+    //   scrollY: true,
+    //   click: true,
+    //   pullUpLoad: true,
+    // })
+
+    // this.scroll.on('scroll',(position)=>{
+    //   console.log("position",position)
+
+    // })
+    // this.scroll.refresh();
   },
   methods:{
     onClickLeft(){
@@ -110,12 +119,62 @@ export default {
     indexTabClick(emitData){
       console.log("emitData",emitData);
       this.tabSelect = emitData;
+      if(emitData == 0){
+        this.tabType = "sales" 
+      }
+      else if(emitData == 1){
+        this.tabType = "new";
+        if (this.newGoods.length == 0) {
+          this.getTabGoods(this.tabType,this.newPage);
+        }
+      }
+      else if(emitData == 2){
+        this.tabType = "recommend";
+        if (this.collectGoods.length == 0) {
+          this.getTabGoods(this.tabType,this.collectPage);
+        }
+      }
+    },
+    getTabGoods(type,page){
+      getHomeGoods(type,page)
+      .then(
+        (res)=>{
+          console.log("getTabGoods:",res)
+          //热销
+          if(type == "sales"){
+            this.saleGoods = this.saleGoods.concat(res.data.goods.data);
+            this.salePage++;
+            console.log("saleGoods",this.saleGoods);
+            console.log("salePage",this.salePage);
+          }
+          //新书
+          else if (type == "new") {
+            this.newGoods = this.newGoods.concat(res.data.goods.data);
+            this.newPage++;
+            console.log("newGoods",this.newGoods);
+            console.log("newPage",this.newPage);
+          }
+          //精选
+          else if (type == "recommend") {
+            this.collectGoods = this.collectGoods.concat(res.data.goods.data);
+            this.collectPage++;
+            console.log("collectGoods",this.collectGoods);
+            console.log("collectPage",this.collectPage);
+          }
 
+        }
+      )
+      .catch(
+        (err)=>{
+          
+        }
+      )
     },
     toDetail(){
       this.$router.push({path:"/detail"})
 
-    }
+    },
+
   }
 }
 </script>
@@ -134,13 +193,21 @@ export default {
     width: 100%;
     height: 160px;
   }
+  .wrapper{
+    width: 100%;
+    height: calc(100vh - 136px);
+    overflow: hidden;
+    background-color: red;
+  }
+  .scroll-content{
+
+  }
   .tab-card{
     position: sticky;
     top: 45px;
+    z-index: 10;
   }
   .tab-view{
     width: 100%;
-    height: 1000px;
-    background-color: lightpink;
   }
 </style>

@@ -18,9 +18,9 @@
 <script>
 // @ is an alias to /src
 import "@/assets/global.scss";
-// import BScroll from "better-scroll";
-// import MouseWheel from "better-scroll/mouse-wheel";
-// BScroll.use(MouseWheel);
+import BScroll from "better-scroll";
+import MouseWheel from "better-scroll/mouse-wheel";
+BScroll.use(MouseWheel);
 
 export default {
   name: "RecommendView",
@@ -37,18 +37,27 @@ export default {
   },
   mounted() {
     console.log("enter RecommendView mounted");
-    // this.bs = new BScroll(this.$refs.scroll, {
-    //   scrollX: true,
-    //   scrollY: false,
-    //   mouseWheel: true,
-    // });
-    // this.$nextTick(() => {
-    //   this.bs.refresh();
-    // });
+    this.bs = new BScroll(this.$refs.scroll, {
+      scrollX: true,
+      scrollY: false,
+      mouseWheel: true,
+    });
+    this.$nextTick(() => {
+      this.bs.refresh();
+    });
 
     console.log("recommends", this.recommends);
   },
   methods: {
+    init() {
+      this.$nextTick(() => {
+        this.bs = new BScroll(this.$refs.scroll, {
+          scrollX: true,
+          scrollY: false,
+          mouseWheel: true,
+        });
+      });
+    },
   },
 };
 </script>
