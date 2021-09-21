@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <van-nav-bar class="nav-bar" title="图书兄弟" left-text="返回" right-text="按钮" left-arrow fixed @click-left="onClickLeft" @click-right="onClickRight"/>
     <div class="navbar-palceholder"></div>
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
@@ -7,25 +7,18 @@
         <van-image class="my-img" fit="contain" :src="item.img_url"/>
       </van-swipe-item>
     </van-swipe>
+
     <recommend-view :recommends="goods"></recommend-view>
     <tab-control class="tab-card" :titles="['畅销', '新书', '精选']" @tabClick="indexTabClick"></tab-control>
-    <div class="wrapper" ref="wrapper" v-if="tabSelect == 0">
-      <div class="scroll-content">
-        <div  class="tab-view">
-          000
-          <goods-list-view :goodList="saleGoods"></goods-list-view>
-        </div>
-      </div>
-    </div>
-
-    <div v-if="tabSelect == 1" class="tab-view">
-      111
+    <van-list class="tab-view" v-if="tabSelect == 0" v-model:loading="loading" :finished="finished" finished-text="没有更多了" offset="50" :immediate-check="immediateCheck" @load="getTabGoods(tabType,salePage)">
+      <goods-list-view :goodList="saleGoods"></goods-list-view>
+    </van-list>
+    <van-list class="tab-view" v-if="tabSelect == 1" v-model:loading="loading" :finished="finished" finished-text="没有更多了" offset="50" :immediate-check="immediateCheck" @load="getTabGoods(tabType,newPage)">
       <goods-list-view :goodList="newGoods"></goods-list-view>
-    </div>
-    <div v-if="tabSelect == 2" class="tab-view">
-      222
+    </van-list>
+    <van-list class="tab-view" v-if="tabSelect == 2" v-model:loading="loading" :finished="finished" finished-text="没有更多了" offset="50" :immediate-check="immediateCheck" @load="getTabGoods(tabType,collectPage)">
       <goods-list-view :goodList="collectGoods"></goods-list-view>
-    </div>
+    </van-list>
   </div>
 </template>
 
@@ -33,12 +26,10 @@
 // @ is an alias to /src
 import "@/assets/global.scss";
 import "@/assets/iconfont.css"
-import BScroll from "better-scroll";
 import RecommendView from "@/components/RecommendView.vue"
 import TabControl from "@/components/TabControl.vue"
 import GoodsListView from "@/components/GoodsListView.vue"
 import { getHomeAllData, getHomeGoods } from "@/network/indexPage.js"
-import { watchEffect } from '@vue/runtime-core';
 
 export default {
   name: 'Index',
@@ -51,30 +42,21 @@ export default {
   data(){
     return {
       tabSelect: 0,
+      loading: false,
+      finished: false,
+      immediateCheck:false,
       slides:[],
       goods:[],
       saleGoods:[],
       newGoods:[],
       collectGoods:[],
-      salePage:1,
+      salePage:2,
       newPage:1,
       collectPage:1,
       tabType:"sales",
     }
   },
-  watch:{
-
-  },
   created(){
-    console.log("enter Index created")
-    // watchEffect(()=>{
-    //   this.$nextTick(()=>{
-    //     console.log("watchEffect");
-    //     this.scroll && this.scroll.refresh();
-    //   })
-    // })
-
-
     getHomeAllData()
     .then(
       (res)=>{
@@ -83,9 +65,6 @@ export default {
         this.saleGoods = res.data.goods.data
         console.log("slides",this.slides)
         console.log("goods",this.goods)
-        this.$nextTick(() => {
-          this.scroll = new Bscroll(this.$refs.wrapper, {})
-        })
       }
     )
     .catch(
@@ -95,19 +74,6 @@ export default {
     );
   },
   mounted(){
-    // let wrapper = document.querySelector('.wrapper')
-    // this.scroll = new BScroll(wrapper,{
-    //   // probeType:true,
-    //   scrollY: true,
-    //   click: true,
-    //   pullUpLoad: true,
-    // })
-
-    // this.scroll.on('scroll',(position)=>{
-    //   console.log("position",position)
-
-    // })
-    // this.scroll.refresh();
   },
   methods:{
     onClickLeft(){
@@ -136,6 +102,7 @@ export default {
       }
     },
     getTabGoods(type,page){
+      console.log("getTabGoods",type,page)
       getHomeGoods(type,page)
       .then(
         (res)=>{
@@ -161,7 +128,7 @@ export default {
             console.log("collectGoods",this.collectGoods);
             console.log("collectPage",this.collectPage);
           }
-
+          this.loading = false;
         }
       )
       .catch(
@@ -192,15 +159,6 @@ export default {
   .my-img{
     width: 100%;
     height: 160px;
-  }
-  .wrapper{
-    width: 100%;
-    height: calc(100vh - 136px);
-    overflow: hidden;
-    background-color: red;
-  }
-  .scroll-content{
-
   }
   .tab-card{
     position: sticky;
