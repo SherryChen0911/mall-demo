@@ -22,6 +22,7 @@ import { Grid, GridItem } from 'vant';
 import { Switch } from 'vant';
 import { Field } from 'vant';
 import { List } from 'vant';
+import { Loading } from 'vant';
 
 createApp(App).use(store).use(router)
 .use(NavBar)
@@ -51,4 +52,5 @@ createApp(App).use(store).use(router)
 .use(Switch)
 .use(Field)
 .use(List)
+.use(Loading)
 .mount('#app')
