@@ -1,6 +1,6 @@
 <template>
   <div class="column2-row">
-    <div class="column2-row-item" v-for="item in goodList" :key="item.id" @click="toDetail"> 
+    <div class="column2-row-item" v-for="item in goodList" :key="item.id" @click="toDetail(item.id)"> 
       <van-image :src="item.cover_url" alt=""/>
       <div class="column2-row-item-name">{{item.title}}</div>
       <div class="column2-row-item-tip">
@@ -32,7 +32,10 @@ export default {
     console.log("enter GoodsListView mounted");
   },
   methods: {
+    toDetail(id){
+      this.$router.push({path:'/detail', query:{id:id}});
 
+    },
   },
 };
 </script>

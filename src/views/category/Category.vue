@@ -18,7 +18,7 @@
             <van-loading v-if="loadingIcon" type="spinner" />
             <van-tab title="销量排序" name="sales">
               <van-list v-if="tabSelect == 0" v-model:loading="salesLoading" :finished="salesFinished" finished-text="没有更多了" offset="50" :immediate-check="immediateCheck" @load="getMoreData('sales')">
-                <div class="list-item" v-for="item in currSalesList" :key="item.id"> 
+                <div class="list-item" v-for="item in currSalesList" :key="item.id" @click="toDetail(item.id)"> 
                   <van-image fit="contain" :src="item.cover_url" style="width:80px;"/>
                   <div class="list-item-cnt">
                     <div class="list-item-cnt-body">
@@ -32,7 +32,7 @@
             </van-tab>
             <van-tab title="价格排序" name="price">
               <van-list v-if="tabSelect == 0" v-model:loading="priceLoading" :finished="priceFinished" finished-text="没有更多了" offset="50" :immediate-check="immediateCheck" @load="getMoreData('price')">
-                <div class="list-item" v-for="item in currPriceList" :key="item.id"> 
+                <div class="list-item" v-for="item in currPriceList" :key="item.id" @click="toDetail(item.id)"> 
                   <van-image fit="contain" :src="item.cover_url" style="width:80px;"/>
                   <div class="list-item-cnt">
                     <div class="list-item-cnt-body">
@@ -46,7 +46,7 @@
             </van-tab>
             <van-tab title="评论排序" name="comments_count">
               <van-list v-if="tabSelect == 0" v-model:loading="commentLoading" :finished="commentFinished" finished-text="没有更多了" offset="50" :immediate-check="immediateCheck" @load="getMoreData('comments_count')">
-                <div class="list-item" v-for="item in currCommentList" :key="item.id"> 
+                <div class="list-item" v-for="item in currCommentList" :key="item.id" @click="toDetail(item.id)"> 
                   <van-image fit="contain" :src="item.cover_url" style="width:80px;"/>
                   <div class="list-item-cnt">
                     <div class="list-item-cnt-body">
@@ -273,6 +273,12 @@ export default {
           }
         );
       }
+    },
+
+    //查看详情
+    toDetail(id){
+      console.log("get id",id);
+      this.$router.push({path:'/detail', query:{id:id}});
     },
 
     onClickLeft(){

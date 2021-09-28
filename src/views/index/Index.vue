@@ -137,10 +137,7 @@ export default {
         }
       )
     },
-    toDetail(){
-      this.$router.push({path:"/detail"})
 
-    },
 
   }
 }
