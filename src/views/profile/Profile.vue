@@ -5,6 +5,7 @@
     <div class="profile-card">
       <van-image fit="contain" :src="require('@/assets/logo.png')" style="width:80px"/>
       <div class="profile-cnt">奔跑的小琳琳</div>
+      <div class="logout-btn" @click="userLogout">退出登录</div>
     </div>
     <div class="order-area">
       <div class="order-grid-item" @click="toOrderList">
@@ -39,6 +40,8 @@
 // @ is an alias to /src
 import "@/assets/global.scss";
 import "@/assets/iconfont.css";
+import { logout } from "@/network/loginPage.js"
+import { Toast } from 'vant';
 
 export default {
   name: 'Profile',
@@ -50,6 +53,24 @@ export default {
     },
     onClickRight(){
 
+    },
+    userLogout(){
+      logout()
+      .then(
+        (res)=>{
+          console.log("res",res);
+          if(res.status == 204){
+            Toast({
+              message:'退出登录！',
+              duration:500
+            });
+            window.localStorage.setItem('token','')
+            setTimeout(()=>{
+              this.$router.push({path:'/login'});
+            },500);
+          }
+        }
+      );
     },
     toOrderList(){
       this.$router.push({path:"/orderlist"});
@@ -71,6 +92,12 @@ export default {
   margin: 10px 20px;
   text-align: left;
   color: #ffffff;
+}
+.logout-btn{
+  margin: 10px;
+  font-size: 14px;
+  color: #ffffff;
+
 }
 .order-area{
   position: absolute;
