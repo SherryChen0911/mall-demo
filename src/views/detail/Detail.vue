@@ -39,7 +39,7 @@
       <span>购物车</span>
     </div>
     <div class="detail-btn">
-        <van-button class="btn" color="linear-gradient(to right, #ffba6a, #FF976A)">加入购物车</van-button>
+        <van-button class="btn" color="linear-gradient(to right, #ffba6a, #FF976A)" @click="addtoCart">加入购物车</van-button>
         <van-button class="btn" color="linear-gradient(to right, #ff6034, #EE0A24)" @click="toPreorder">立即购买</van-button>
     </div>
   </div>
@@ -48,7 +48,9 @@
 <script>
 // @ is an alias to /src
 import "@/assets/global.scss";
-import {getGoodDetail} from "@/network/detailPage.js"
+import { Toast } from 'vant';
+import {getGoodDetail} from "@/network/detailPage.js";
+import {addGoodsToShopcart} from "@/network/shopcartPage.js";
 
 export default {
   name: 'Profile',
@@ -83,6 +85,26 @@ export default {
 
     },
     onClickRight(){
+
+    },
+    addtoCart(){
+      let param = {
+        goods_id:this.currBook.id,
+        num:"1",
+      };
+      console.log("addtoCart",param);
+      addGoodsToShopcart(param)
+      .then(
+        (res)=>{
+          console.log("res1",res);
+          if(res.status == 201 || res.status == 204){
+              Toast({
+                message:'加入购物车成功！',
+                duration:500
+            });
+          }
+        }
+      );
 
     },
     toShopcart(){
