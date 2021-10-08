@@ -23,6 +23,7 @@ import { Switch } from 'vant';
 import { List } from 'vant';
 import { Loading } from 'vant';
 import { Form,Field } from 'vant';
+import { Area } from 'vant';
 
 
 createApp(App).use(store).use(router)
@@ -55,4 +56,5 @@ createApp(App).use(store).use(router)
 .use(List)
 .use(Loading)
 .use(Form)
+.use(Area)
 .mount('#app')

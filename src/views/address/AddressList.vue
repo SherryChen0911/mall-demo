@@ -1,19 +1,22 @@
 <template>
 <div>
-  <van-nav-bar class="nav-bar" title="地址管理" left-text="返回" right-text="按钮" left-arrow fixed @click-left="onClickLeft" @click-right="onClickRight"/>
+  <van-nav-bar class="nav-bar" title="地址管理" left-text="返回" right-text="添加地址" left-arrow fixed @click-left="onClickLeft" @click-right="toAddressAdd"/>
   <div class="navbar-palceholder"></div>
   <div class="address-item" v-for="item in addressList" :key="item.id">
     <div class="address-cnt">
       <div>
         <span class="address-span">{{item.name}}</span>
-        <span class="address-span">{{item.tel}}</span>
-        <span class="address-span">默认</span>
+        <span class="address-span">{{item.phone}}</span>
+        <span v-if="item.is_default == 1" class="address-span">默认</span>
       </div>
       <div>
+        <span class="address-span">{{item.province}}</span>
+        <span class="address-span">{{item.city}}</span>
+        <span class="address-span">{{item.county}}</span>
         <span class="address-span">{{item.address}}</span>
       </div>
     </div>
-    <div class="address-icon" @click="toAddressDetail">
+    <div class="address-icon" @click="toAddressDetail(item.id)">
       <van-icon name="edit" size="20px"/>
     </div>
   </div>
@@ -23,6 +26,7 @@
 <script>
 // @ is an alias to /src
 import "@/assets/global.scss";
+import { getAddressList } from "@/network/addressPage.js"
 
 export default {
   name: 'Index',
@@ -30,43 +34,27 @@ export default {
   },
   data(){
     return {
-      addressList:[
-        {
-          id:1,
-          name: "陈1琳",
-          tel: "15900001111",
-          address: "北京 北京市 西城区 花园小区1号楼505室"
-        },
-        {
-          id:2,
-          name: "陈2琳",
-          tel: "15900001111",
-          address: "北京 北京市 西城区 花园小区1号楼505室"
-        },
-        {
-          id:3,
-          name: "陈3琳",
-          tel: "15900001111",
-          address: "北京 北京市 西城区 花园小区1号楼505室"
-        },
-        {
-          id:4,
-          name: "陈4琳",
-          tel: "15900001111",
-          address: "北京 北京市 西城区 花园小区1号楼505室"
-        },
-      ],
+      addressList:[],
     }
+  },
+  mounted(){
+    getAddressList()
+    .then(
+      (res)=>{
+        console.log("getAddressList",res)
+        this.addressList = res.data.data;
+      }
+    );
   },
   methods:{
     onClickLeft(){
       this.$router.go(-1)
     },
-    onClickRight(){
-
+    toAddressAdd(){
+      this.$router.push({path:"/addressadd"})
     },
-    toAddressDetail(){
-      this.$router.push({path:"/addressdetail"})
+    toAddressDetail(id){
+      this.$router.push({path:"/addressdetail",query:{id:id}})
     }
   }
 }

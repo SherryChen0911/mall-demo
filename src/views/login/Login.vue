@@ -7,8 +7,8 @@
     <van-tabs class="login-tabs" v-model="loginSelect" color="#42b983" @change="changeTab">
       <van-tab title="登&nbsp;&nbsp;录">
         <van-form class="login-form" @submit="userLogin">
-          <van-field v-model="loginData.email" name="用户名" label="账号" placeholder="请输入账号" :rules="[{ required: true, message: '请填写用户名' }]"/>
-          <van-field v-model="loginData.password" name="用户名" type="password" label="密码" placeholder="请输入密码" :rules="[{ required: true, message: '请填写密码' }]"/>
+          <van-field v-model="loginData.email" name="email" label="账号" placeholder="请输入账号" :rules="[{ required: true, message: '请填写用户名' }]"/>
+          <van-field v-model="loginData.password" name="password" type="password" label="密码" placeholder="请输入密码" :rules="[{ required: true, message: '请填写密码' }]"/>
           <van-button class="one-btn" color="#42b983" native-type="submit">登&nbsp;录</van-button>
         </van-form>
       </van-tab>

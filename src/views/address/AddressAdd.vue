@@ -1,8 +1,8 @@
 <template>
 <div>
-  <van-nav-bar class="nav-bar" title="编辑地址" left-text="返回" right-text="按钮" left-arrow fixed @click-left="onClickLeft" @click-right="onClickRight"/>
+  <van-nav-bar class="nav-bar" title="添加地址" left-text="返回" right-text="按钮" left-arrow fixed @click-left="onClickLeft" @click-right="onClickRight"/>
   <div class="navbar-palceholder"></div>
-  <van-form class="form-view" @submit="setUserAddress(addressId,addressData)">
+  <van-form class="form-view" @submit="addUserAddress">
     <van-field v-model="addressData.name" name="name" label="姓名" placeholder="请填写收件人姓名" :rules="[{ required: true, message: '请填写收件人姓名' }]"/>
     <van-field v-model="addressData.phone" type="tel" name="phone" label="电话" placeholder="请填写收件人电话" :rules="[{ required: true, message: '请填写收件人电话' }]"/>
     <div class="form-item">
@@ -15,15 +15,15 @@
       <van-field class="form-item-cnt" v-model="addressData.county" name="phone" placeholder="区" :rules="[{ required: true, message: '请填写收件人电话' }]"/> -->
       <!-- <span class="form-item-cnt">北京 北京市 西城区</span> -->
     </div>
-    <van-field v-model="addressData.address" type="tel" name="phone" label="详细地址" placeholder="请填写详细地址" :rules="[{ required: true, message: '请填写收件人电话' }]"/>
+    <van-field v-model="addressData.address" type="tel" name="address" label="详细地址" placeholder="请填写详细地址" :rules="[{ required: true, message: '请填写收件人详细地址' }]"/>
     <div class="form-item">
       <span class="form-item-cnt">设为默认地址</span>
       <div class="form-item-suffix">
-        <van-switch size="20px" active-color="#42b983" v-model="checked" @change="changeSwitch"/>
+        <van-switch size="20px" active-color="#42b983" v-model="checked" />
       </div>
     </div>
     <van-button class="one-btn" color="#42b983" native-type="submit">保存</van-button>
-    <van-button class="one-btn" color="#ffffff" style="color:#2C3E50; border: 1px solid lightgray;" @click="delUserAddress(addressId)">删除</van-button>
+    <van-button class="one-btn" color="#ffffff" style="color:#2C3E50; border: 1px solid lightgray;">取消</van-button>
   </van-form>
 </div>
 </template> 
@@ -32,7 +32,7 @@
 // @ is an alias to /src
 import "@/assets/global.scss";
 import { Toast } from 'vant';
-import { getAddressDetail,setAddressDetail,delAddressDetail } from "@/network/addressPage.js"
+import { addAddress } from "@/network/addressPage.js"
 
 export default {
   name: 'Index',
@@ -40,27 +40,12 @@ export default {
   },
   data(){
     return {
-      addressId:"",
       checked:false,
       addressData:{},
     }
   },
   created(){
-    this.addressId = this.$route.query.id;
-    getAddressDetail(this.addressId)
-    .then(
-      (res)=>{
-        console.log("getAddressDetail",res)
-        this.addressData = res.data;
-        console.log("addressData",this.addressData);
-        if (this.addressData.is_default == 1) {
-          this.checked = true;
-        }
-        else{
-          this.checked = false;
-        }
-      }
-    );
+
   },
   methods:{
     onClickLeft(){
@@ -69,25 +54,22 @@ export default {
     onClickRight(){
 
     },
-    changeSwitch(e){
-      if(e == true){
+    addUserAddress(e){
+      if(this.checked == true){
         this.addressData.is_default = 1;
       }
       else{
         this.addressData.is_default = 0;
       }
-      console.log("addressData",this.addressData)
-    },
-    setUserAddress(id,param){
-      console.log(id)
-      console.log(param)
-      setAddressDetail(id,param)
+      console.log(this.addressData)
+      console.log(this.checked)
+      addAddress(this.addressData)
       .then(
         (res)=>{
-          console.log("setAddressDetail",res)
-          if(res.status == 204){
+          console.log("addAddress",res)
+          if(res.status == 201){
             Toast({
-              message:'收货地址修改成功！',
+              message:'收货地址添加成功！',
               duration:500
             });
             setTimeout(()=>{
@@ -96,23 +78,8 @@ export default {
           }
         }
       );
-    },
-    delUserAddress(addressId){
-      delAddressDetail(addressId)
-      .then(
-        (res)=>{
-          console.log("delAddressDetail",res)
-          if(res.status == 204){
-            Toast({
-              message:'收货地址删除成功！',
-              duration:500
-            });
-            setTimeout(()=>{
-              this.$router.go(-1);
-            },500);
-          }
-        }
-      );
+
+
     }
   }
 }
