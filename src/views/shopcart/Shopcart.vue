@@ -20,7 +20,7 @@
     <div class="settlement-bar">
       <van-checkbox v-model="selectall" @click="selectAll">全选</van-checkbox>
       <div class="settlement-bar-cnt"><span>合计:</span><span style="color:red">￥</span><span style="color:red;font-size:18px;font-weight:bold;">{{total}}</span></div>
-      <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" style="width:80px; height:30px; border-radius:15px;" @click="settlement">结算</van-button>
+      <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" style="width:80px; height:30px; border-radius:15px;" @click="toPreorder">结算</van-button>
     </div>
   </div>
 </template>
@@ -167,7 +167,6 @@ export default {
                 }
               }
             );
-
           })
           .catch(() => {
             item.num = "1";
@@ -188,8 +187,10 @@ export default {
         );
       }
     },
-    settlement(){
-      this.total++;
+
+    //跳转订单预览页
+    toPreorder(){
+      this.$router.push({path:"/preorder"});
     }
   }
 }

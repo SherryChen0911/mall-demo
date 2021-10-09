@@ -47,6 +47,7 @@
 <script>
 // @ is an alias to /src
 import "@/assets/global.scss";
+import { getOrderDetailAPI } from "@/network/orderPage.js";
 
 export default {
   name: 'Index',
@@ -55,6 +56,14 @@ export default {
   data(){
     return {
     }
+  },
+  created(){
+    getOrderDetailAPI(4723)
+    .then(
+      (res)=>{
+        console.log("getOrderDetailAPI",res)
+      }
+    );
   },
   methods:{
     onClickLeft(){

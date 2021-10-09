@@ -5,28 +5,28 @@
     <div class="address">
       <div class="address-area">
         <div style="font-size:18px; margin-bottom:10px;">收货地址</div>
-        <div><span style="font-size:16px">奔跑的小琳琳</span><span style="font-size:14px; color:gray; margin-left:10px">15900001234</span></div>
-        <div>福建省福州市鼓楼区香山公寓1号303</div>
+        <div><span style="font-size:16px">{{address.name}}</span><span style="font-size:14px; color:gray; margin-left:10px">{{address.phone}}</span></div>
+        <div>{{address.province}} {{address.city}} {{address.county}} {{address.address}}</div>
       </div>
       <van-icon name="arrow" size="20px"/>
     </div>
     <div style="width:100%; height:1px;border-bottom:3px dashed ;border-color: #42b983"></div>
-    <div style="width = 100% !important;">
-      <div class="check-list-item" v-for="(item) in list" clickable :key="item.name">
-        <van-image fit="contain" :src="item.src" style="width:80px;"/>
+    <div style="width:100% !important;">
+      <div class="check-list-item" v-for="(item) in shopList" clickable :key="item.id">
+        <van-image fit="contain" :src="item.goods.cover_url" style="width:80px;"/>
         <div class="check-list-cnt">
           <div class="check-list-cnt-title check-list-cnt-other">
-            <span>{{item.name}}</span>
-            <div><span>×</span><span>{{item.count}}</span></div>
+            <span>{{item.goods.title}}</span>
+            <div><span>×</span><span>{{item.num}}</span></div>
           </div>
-          <div><span style="color:red;">￥</span><span style="color:red; font-size:18px">{{item.price}}</span></div>
+          <div><span style="color:red;">￥</span><span style="color:red; font-size:18px">{{Number(item.goods.price).toFixed(2)}}</span></div>
         </div>
       </div>
     </div>
     <div class="tabbar-placeholder"></div>
     <div class="settlement-bar-order">
-      <div class="settlement-bar-cnt"><span>合计:</span><span style="color:red">￥</span><span style="color:red;font-size:18px;font-weight:bold;">100.00</span></div>
-      <van-button class="btn" color="linear-gradient(to right, #ff6034, #ee0a24)">结算</van-button>
+      <div class="settlement-bar-cnt"><span>合计:</span><span style="color:red">￥</span><span style="color:red;font-size:18px;font-weight:bold;">{{Number(price).toFixed(2)}}</span></div>
+      <van-button class="btn" color="linear-gradient(to right, #ff6034, #ee0a24)" @click="createOrder">提交订单</van-button>
     </div>
   </div>
 </template> 
@@ -34,6 +34,7 @@
 <script>
 // @ is an alias to /src
 import "@/assets/global.scss";
+import { orderPreviewAPI,createOrderAPI } from "@/network/orderPage.js";
 
 export default {
   name: 'Index',
@@ -41,18 +42,31 @@ export default {
   },
   data(){
     return {
-      list: [
-        {id:"1",name:'《细说PHP》第4版',price:'108',src:require('@/assets/images/22.png'),count:1},
-        {id:"2",name:'《细说网页制作》',price:'66',src:require('@/assets/images/33.png'),count:1},
-        {id:"3",name:'《Java从入门到精通》第二版',price:'100',src:require('@/assets/images/44.png'),count:1},
-        {id:"4",name:'《细说PHP》第4版',price:'108',src:require('@/assets/images/22.png'),count:1},
-        {id:"5",name:'《细说网页制作》',price:'66',src:require('@/assets/images/33.png'),count:1},
-        {id:"6",name:'《Java从入门到精通》第二版',price:'100',src:require('@/assets/images/44.png'),count:1},
-        {id:"7",name:'《细说PHP》第4版',price:'108',src:require('@/assets/images/22.png'),count:1},
-        {id:"8",name:'《细说网页制作》',price:'66',src:require('@/assets/images/33.png'),count:1},
-        {id:"9",name:'《Java从入门到精通》第二版',price:'100',src:require('@/assets/images/44.png'),count:1},
-      ],
+      address:{},
+      shopList:[],
+      price:0,
     }
+  },
+  mounted(){
+    orderPreviewAPI()
+    .then(
+      (res)=>{
+        console.log("orderPreviewAPI",res)
+        let tempAddress = res.data.address;
+        this.address = tempAddress[0];
+        for(let i = 0; i < tempAddress.length; i++){
+          if (tempAddress[i].is_default == 1) {
+            this.address = tempAddress[i];
+            break
+          }
+        }
+        this.shopList = res.data.carts;
+        this.price = 0;
+        for(let j = 0; j < this.shopList.length; j++){
+          this.price += this.shopList[j].num* this.shopList[j].goods.price;
+        }
+      }
+    );
   },
   methods:{
     onClickLeft(){
@@ -61,6 +75,14 @@ export default {
     onClickRight(){
 
     },
+    createOrder(){
+      createOrderAPI(this.address.id)
+      .then(
+        (res)=>{
+          console.log("createOrderAPI",res)
+        }
+      );
+    }
   }
 }
 </script>
