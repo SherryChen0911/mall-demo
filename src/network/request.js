@@ -15,7 +15,9 @@ export function request(config){
             if(token){
                 config.headers.Authorization = 'Bearer '+ token;
             }
+            console.log("123",config)
             return config;
+            
 
         },
         err=>{

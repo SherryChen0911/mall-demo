@@ -1,5 +1,5 @@
 <template>
-  <div class="order-list-item" v-for="item in orderList" :key="item.order_no" @click="toOrderDetail">
+  <div class="order-list-item" v-for="item in orderList" :key="item.order_no" @click="toOrderDetail(item.id)">
     <div>
       <div class="order-list-item-head">
         <span>订单日期: {{item.created_at}}</span>
@@ -48,8 +48,8 @@ export default {
     console.log("enter OrderListView mounted");
   },
   methods: {
-    toOrderDetail(){
-      this.$router.push({path:"/orderdetail"});
+    toOrderDetail(orderId){
+      this.$router.push({path:"/orderdetail",query:{id:orderId}});
     },
   },
 };
